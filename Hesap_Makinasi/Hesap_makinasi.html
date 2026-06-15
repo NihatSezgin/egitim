@@ -1,0 +1,83 @@
+doctypek html>
+<html>
+    <head>
+        <title>Hesap Makinası</title>
+    <style> 
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        
+
+    </style>
+    <head>  
+    
+        <h1>kolay hesap makinasi </h1>
+        <input type="number" id="sayi1" placeholder="İlk sayi">
+        <input type="number" id="sayi2" placeholder="İkinci sayi">
+        <button onclick="topla()">Topla</button>
+        <button onclick="cikar()">cikart</button>
+        <button onclick="carp()">carp</button>
+        <button onclick="bol()">bol</button>
+        <h2 id="sonucEkrani">sonuc</h2>   
+        <script>
+            let kutu1=document.getElementById("sayi1");
+            let kutu2=document.getElementById("sayi2");
+            let sonuzYazisi=document.getElementById("sonucEkrani");
+
+
+            function topla(){
+                let s1=sonuc=Number(kutu1.value)
+                let s2= sonuc2=Number(kutu2.value)
+                let sonucyazisi=document
+            }
+            function cikar(){
+                let sonuc=Number(kutu1.value)-Number(kutu2.value);
+                sonuzYazisi.innerText="Sonuç: "+sonuc;
+            }
+            function carp(){
+                let sonuc=Number(kutu1.value)*Number(kutu2.value);
+                sonuzYazisi.innerText="Sonuç: "+sonuc;
+            }
+            function bol(){
+                let sonuc=Number(kutu1.value)/Number(kutu2.value);
+                sonuzYazisi.innerText="Sonuç: "+sonuc;
+            }
+
+
+        
+
+
+ 
+    <body>
+        <h1>Hesap Makinası</h1>
+        <input type="text" id="num1" placeholder="Sayı 1">
+        <input type="text" id="num2" placeholder="Sayı 2">
+        <button onclick="calculate()">Hesapla</button>
+        <p id="result"></p>
+
+        <script>
+            function calculate() {
+                var num1 = parseFloat(document.getElementById('num1').value);
+                var num2 = parseFloat(document.getElementById('num2').value);
+                var result = num1 + num2;
+                document.getElementById('result').innerText = 'Sonuç: ' + result;
+            }
+        </script>
+    </body>
+    
