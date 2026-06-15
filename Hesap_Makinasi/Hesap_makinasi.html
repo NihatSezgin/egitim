@@ -1,10 +1,10 @@
-doctypek html>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Hesap Makinesi</title>
+        <title>Kolay Hesap Makinesi</title>
     <style> 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Tahoma, sans-serif;
             margin: 20px;
         }
         input {
@@ -27,14 +27,14 @@ doctypek html>
     </style>
     <head>  
     
-        <h1>kolay hesap makinasi </h1>
-        <input type="number" id="sayi1" placeholder="İlk sayi">
-        <input type="number" id="sayi2" placeholder="İkinci sayi">
+        <h1>Kolay Hesap Makinesi</h1>
+        <input type="number" id="sayi1" placeholder="İlk sayi"></input>
+        <input type="number" id="sayi2" placeholder="İkinci sayi"></input>
         <button onclick="topla()">Topla</button>
-        <button onclick="cikar()">cikart</button>
-        <button onclick="carp()">carp</button>
-        <button onclick="bol()">bol</button>
-        <h2 id="sonucEkrani">sonuc</h2>   
+        <button onclick="cikar()">Çıkar</button>
+        <button onclick="carp()">Çarp</button>
+        <button onclick="bol()">Böl</button>
+        <h2 id="sonucEkrani">Sonuç</h2>   
         <script>
             let kutu1=document.getElementById("sayi1");
             let kutu2=document.getElementById("sayi2");
@@ -42,9 +42,9 @@ doctypek html>
 
 
             function topla(){
-                let s1=sonuc=Number(kutu1.value)
-                let s2= sonuc2=Number(kutu2.value)
-                let sonucyazisi=document
+                let s1=Number(kutu1.value);
+                let s2=Number(kutu2.value);
+                let sonuc=s1+s2;
             }
             function cikar(){
                 let sonuc=Number(kutu1.value)-Number(kutu2.value);
@@ -65,19 +65,50 @@ doctypek html>
 
  
     <body>
-        <h1>Hesap Makinası</h1>
-        <input type="text" id="num1" placeholder="Sayı 1">
-        <input type="text" id="num2" placeholder="Sayı 2">
-        <button onclick="calculate()">Hesapla</button>
-        <p id="result"></p>
-
+        <h1>Kolay Hesap Makinesi</h1>
+        <input type="number" id="sayi1" placeholder="İlk Sayı"></input>
+        <input type="number" id="sayi2" placeholder="İkinci Sayı"></input>
+        <button onclick="topla()">Topla</button>
+        <button onclick="cikar()">Çıkar</button>
+        <button onclick="carp()">Çarp</button>
+        <button onclick="bol()">Böl</button>
+        <h2 id="sonucEkrani">Sonuç</h2>
+        
         <script>
-            function calculate() {
-                var num1 = parseFloat(document.getElementById('num1').value);
-                var num2 = parseFloat(document.getElementById('num2').value);
-                var result = num1 + num2;
-                document.getElementById('result').innerText = 'Sonuç: ' + result;
+            let kutu1 = document.getElementById("sayi1");
+            let kutu2 = document.getElementById("sayi2");
+            let sonucYazisi = document.getElementById("sonucEkrani");
+
+
+            //Toplama İşlemi
+
+            function topla() {
+                let s1 = Number(kutu1.value);
+                let s2 = Number(kutu2.value);
+                let sonuc = s1 + s2;
+                sonucYazisi.innerText = "Sonuç: " + sonuc;
             }
+
+            //Çıkarma İşlemi
+
+            function cikar() {
+                let sonuc = Number(kutu1.value) - Number(kutu2.value);
+                sonucYazisi.innerText = "Sonuç: " + sonuc;
+            }
+
+            //Çarpma İşlemi
+            function carp() {
+                let sonuc = Number(kutu1.value) * Number(kutu2.value);
+                sonucYazisi.innerText = "Sonuç: " + sonuc;
+            }
+
+            //Bölme İşlemi
+            function bol() {
+                let sonuc = Number(kutu1.value) / Number(kutu2.value);
+                sonucYazisi.innerText = "Sonuç: " + sonuc;
+            }
+
+
         </script>
     </body>
-    
+</html>
