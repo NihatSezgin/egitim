@@ -1,114 +1,221 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Kolay Hesap Makinesi</title>
-    <style> 
-        body {
-            font-family: Tahoma, sans-serif;
-            margin: 20px;
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Hesap Makinesi</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        input {
-            margin: 5px;
-            padding: 10px;
-            width: 200px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        
-
-    </style>
-    <head>  
-    
-        <h1>Kolay Hesap Makinesi</h1>
-        <input type="number" id="sayi1" placeholder="İlk sayi"></input>
-        <input type="number" id="sayi2" placeholder="İkinci sayi"></input>
-        <button onclick="topla()">Topla</button>
-        <button onclick="cikar()">Çıkar</button>
-        <button onclick="carp()">Çarp</button>
-        <button onclick="bol()">Böl</button>
-        <h2 id="sonucEkrani">Sonuç</h2>   
-        <script>
-            let kutu1=document.getElementById("sayi1");
-            let kutu2=document.getElementById("sayi2");
-            let sonuzYazisi=document.getElementById("sonucEkrani");
-
-
-            function topla(){
-                let s1=Number(kutu1.value);
-                let s2=Number(kutu2.value);
-                let sonuc=s1+s2;
-            }
-            function cikar(){
-                let sonuc=Number(kutu1.value)-Number(kutu2.value);
-                sonuzYazisi.innerText="Sonuç: "+sonuc;
-            }
-            function carp(){
-                let sonuc=Number(kutu1.value)*Number(kutu2.value);
-                sonuzYazisi.innerText="Sonuç: "+sonuc;
-            }
-            function bol(){
-                let sonuc=Number(kutu1.value)/Number(kutu2.value);
-                sonuzYazisi.innerText="Sonuç: "+sonuc;
-            }
-
-
-        
-
-
  
-    <body>
-        <h1>Kolay Hesap Makinesi</h1>
-        <input type="number" id="sayi1" placeholder="İlk Sayı"></input>
-        <input type="number" id="sayi2" placeholder="İkinci Sayı"></input>
-        <button onclick="topla()">Topla</button>
-        <button onclick="cikar()">Çıkar</button>
-        <button onclick="carp()">Çarp</button>
-        <button onclick="bol()">Böl</button>
-        <h2 id="sonucEkrani">Sonuç</h2>
-        
-        <script>
-            let kutu1 = document.getElementById("sayi1");
-            let kutu2 = document.getElementById("sayi2");
-            let sonucYazisi = document.getElementById("sonucEkrani");
-
-
-            //Toplama İşlemi
-
-            function topla() {
-                let s1 = Number(kutu1.value);
-                let s2 = Number(kutu2.value);
-                let sonuc = s1 + s2;
-                sonucYazisi.innerText = "Sonuç: " + sonuc;
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vi;
+            background: linear-gradient(135deg, #1e1e2f, #252542);
+        }
+ 
+        .calculator {
+            background-color: #0f0f1a;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            width: 340px;
+        }
+ 
+        .display {
+            background-color: #1a1a2e;
+            color: #ffffff;
+            font-size: 2.5rem;
+            text-align: right;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            min-height: 70px;
+            word-wrap: break-word;
+            word-break: break-all;
+            font-weight: 300;
+        }
+ 
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+ 
+        button {
+            padding: 18px;
+            font-size: 1.25rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            background-color: #252542;
+            color: #ffffff;
+        }
+ 
+        button:hover {
+            background-color: #31315b;
+            transform: translateY(-2px);
+        }
+ 
+        button:active {
+            transform: translateY(0);
+        }
+ 
+        /* Fonksiyon butonları (C, backspace vb.) */
+        button.clear, button.backspace {
+            background-color: #e94560;
+            color: white;
+        }
+        button.clear:hover, button.backspace:hover {
+            background-color: #5c7c;
+        }
+ 
+        /* Operatörler (+, -, *, /) */
+        button.operator {
+            background-color: #ff9f43;
+            color: #0f0f1a;
+        }
+        button.operator:hover {
+            background-color: #ffb366;
+        }
+ 
+        /* Eşittir butonu */
+        button.equal {
+            background-color: #4cd137;
+            color: #0f0f1a;
+            grid-column: span 2;
+        }
+        button.equal:hover {
+            background-color: #61e04e;
+        }
+</style>
+</head>
+<body>
+ 
+<div class="calculator">
+<div class="display" id="display">0</div>
+<div class="buttons">
+<button class="clear" onclick="clearDisplay()">C</button>
+<button class="backspace" onclick="backspace()">⌫</button>
+<button class="operator" onclick="appendOperator('/')">/</button>
+<button class="operator" onclick="appendOperator('*')">×</button>
+<button onclick="appendNumber('7')">7</button>
+<button onclick="appendNumber('8')">8</button>
+<button onclick="appendNumber('9')">9</button>
+<button class="operator" onclick="appendOperator('-')">-</button>
+<button onclick="appendNumber('4')">4</button>
+<button onclick="appendNumber('5')">5</button>
+<button onclick="appendNumber('6')">6</button>
+<button class="operator" onclick="appendOperator('+')">+</button>
+<button onclick="appendNumber('1')">1</button>
+<button onclick="appendNumber('2')">2</button>
+<button onclick="appendNumber('3')">3</button>
+<button onclick="appendNumber('.')">,</button>
+<button onclick="appendNumber('0')">0</button>
+<button class="equal" onclick="calculate()">=</button>
+</div>
+</div>
+ 
+<script>
+    const display = document.getElementById('display');
+    let currentInput = '0';
+    let shouldResetDisplay = false;
+ 
+    function updateDisplay() {
+        // Görsel olarak çarpmayı 'x' bölmeyi '÷' gösterelim
+        let formattedInput = currentInput
+            .replace(/\*/g, ' × ')
+            .replace(/\//g, ' ÷ ')
+            .replace(/\+/g, ' + ')
+            .replace(/\-/g, ' - ')
+            .replace(/\./g, ',');
+        display.innerText = formattedInput;
+    }
+ 
+    function appendNumber(number) {
+        if (currentInput === '0' && number !== '.') {
+            currentInput = number;
+        } else if (shouldResetDisplay) {
+            currentInput = number;
+            shouldResetDisplay = false;
+        } else {
+            // Yan yana birden fazla virgül konmasını engelle
+            if (number === '.') {
+                const parts = currentInput.split(/[\+\-\*\/]/);
+                const lastPart = parts[parts.length - 1];
+                if (lastPart.includes('.')) return;
             }
-
-            //Çıkarma İşlemi
-
-            function cikar() {
-                let sonuc = Number(kutu1.value) - Number(kutu2.value);
-                sonucYazisi.innerText = "Sonuç: " + sonuc;
-            }
-
-            //Çarpma İşlemi
-            function carp() {
-                let sonuc = Number(kutu1.value) * Number(kutu2.value);
-                sonucYazisi.innerText = "Sonuç: " + sonuc;
-            }
-
-            //Bölme İşlemi
-            function bol() {
-                let sonuc = Number(kutu1.value) / Number(kutu2.value);
-                sonucYazisi.innerText = "Sonuç: " + sonuc;
-            }
-
-
-        </script>
-    </body>
+            currentInput += number;
+        }
+        updateDisplay();
+    }
+ 
+    function appendOperator(operator) {
+        if (shouldResetDisplay) shouldResetDisplay = false;
+        const lastChar = currentInput.slice(-1);
+        // Eğer son karakter zaten bir operatörse, yenisiyle değiştir
+        if (['+', '-', '*', '/'].includes(lastChar)) {
+            currentInput = currentInput.slice(0, -1) + operator;
+        } else {
+            currentInput += operator;
+        }
+        updateDisplay();
+    }
+ 
+    function clearDisplay() {
+        currentInput = '0';
+        shouldResetDisplay = false;
+        updateDisplay();
+    }
+ 
+    function backspace() {
+        if (currentInput.length > 1) {
+            currentInput = currentInput.slice(0, -1);
+        } else {
+            currentInput = '0';
+        }
+        updateDisplay();
+    }
+ 
+    function calculate() {
+        try {
+            // Son karakter operatörse hesaplama yapma
+            const lastChar = currentInput.slice(-1);
+            if (['+', '-', '*', '/'].includes(lastChar)) return;
+ 
+            // eval() ile matematiksel string'i hesapla
+            let result = eval(currentInput);
+            // Yuvarlama hatasını engelle (örn: 0.1 + 0.2 = 0.3000000004)
+            result = Math.round(result * 100000000) / 100000000;
+            currentInput = result.toString();
+            shouldResetDisplay = true;
+            updateDisplay();
+        } catch (error) {
+            display.innerText = 'Hata';
+            currentInput = '0';
+            shouldResetDisplay = true;
+        }
+    }
+ 
+    // Klavye desteği ekleyelim
+    document.addEventListener('keydown', (event) => {
+        const key = event.key;
+        if (/[0-9]/.test(key)) appendNumber(key);
+        if (['+', '-', '*', '/'].includes(key)) appendOperator(key);
+        if (key === ',' || key === '.') appendNumber('.');
+        if (key === 'Enter' || key === '=') calculate();
+        if (key === 'Backspace') backspace();
+        if (key === 'Escape') clearDisplay();
+    });
+</script>
+ 
+</body>
 </html>
